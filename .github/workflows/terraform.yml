@@ -62,9 +62,6 @@ jobs:
             })
 
       - name: Terraform Plan Status
-        with:
-          script: |
-            #### Terraform Plan check 📖\`${{ steps.plan.outcome }}\`
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
